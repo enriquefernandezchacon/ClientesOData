@@ -1,0 +1,21 @@
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:DataServices>
+    <Schema Namespace="EjercitoOData.Models" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="Ejercito">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Nombre" Type="Edm.String" />
+        <Property Name="FechaNacimiento" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="FuerzaCombate" Type="Edm.Single" Nullable="false" />
+        <Property Name="Ubicacion" Type="Edm.String" />
+      </EntityType>
+    </Schema>
+    <Schema Namespace="Default" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityContainer Name="Container">
+        <EntitySet Name="Ejercitos" EntityType="EjercitoOData.Models.Ejercito" />
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
