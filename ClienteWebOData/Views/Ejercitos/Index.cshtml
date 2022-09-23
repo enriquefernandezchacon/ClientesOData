@@ -1,0 +1,76 @@
+﻿@model IEnumerable<EjercitoOData.Models.Ejercito>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>DATOS RESUMEN:</h1>
+<table class="table">
+    <tbody>
+        <tr>
+            <td>Nº Ejercitos Totales</td>
+            <td>@Model.Count()</td>
+        </tr>
+        <tr>
+            <td>Fuerza Total</td>
+            <td>@Model.Sum(x => x.FuerzaCombate).ToString("0.00")</td>
+        </tr>
+        <tr>
+            <td>Fuerza Media</td>
+            <td>@Model.Average(x => x.FuerzaCombate).ToString("0.00")</td>
+        </tr>
+        <tr>
+            <td>Años de experiencia totales</td>
+            <td>@Model.Sum(x => (DateTimeOffset.Now - x.FechaNacimiento).TotalDays / 365).ToString("0.00")</td>
+        </tr>
+        <tr>
+            <td>Fuerza Total</td>
+            <td>@Model.Average(x => (DateTimeOffset.Now - x.FechaNacimiento).TotalDays / 365).ToString("0.00")</td>
+        </tr>
+    </tbody>
+    
+</table>
+<h1>LISTADO DE EJERCITOS</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaNacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuerzaCombate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ubicacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuerzaCombate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ubicacion)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
