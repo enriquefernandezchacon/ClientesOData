@@ -23,14 +23,14 @@
             <td>@Model.Sum(x => (DateTimeOffset.Now - x.FechaNacimiento).TotalDays / 365).ToString("0.00")</td>
         </tr>
         <tr>
-            <td>Fuerza Total</td>
+            <td>Años de experiencia medios</td>
             <td>@Model.Average(x => (DateTimeOffset.Now - x.FechaNacimiento).TotalDays / 365).ToString("0.00")</td>
         </tr>
     </tbody>
     
 </table>
 <h1>LISTADO DE EJERCITOS</h1>
-
+<h2>LAS FUNCIONES "CREAR" Y "BORRAR" ESTAN HABILITADAS</h2>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -68,7 +68,8 @@
                 @Html.DisplayFor(modelItem => item.Ubicacion)
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
             </td>
         </tr>
 }

@@ -68,5 +68,31 @@ namespace ClienteWebOData.Controllers
         {
             return _context.Find(id) != null;
         }
+
+        // GET: Ejercitos/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var ejercito = _context.Find(id);
+            if (ejercito == null)
+            {
+                return NotFound();
+            }
+
+            return View(ejercito);
+        }
+
+        // POST: Ejercitos/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            _context.Remove(id);
+            return RedirectToAction("Index");
+        }
     }
 }

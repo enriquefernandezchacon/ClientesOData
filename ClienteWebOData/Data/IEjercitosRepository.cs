@@ -12,5 +12,6 @@ namespace ClienteWebOData.Data
         IList<Ejercito> GetEjercitos();
         Ejercito Find(int? id);
         void Anadir(Ejercito nuevoEjercito);
+        public void Remove(int id);
     }
 }

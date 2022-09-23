@@ -44,7 +44,7 @@ namespace ClienteWebOData.Data
         public async void Anadir(Ejercito nuevoEjercito)
         {
             CargarEjercitos();
-            nuevoEjercito.Id = _ejercitos.Count() + 1;
+            nuevoEjercito.Id = _ejercitos.OrderByDescending(x => x.Id).Take(1).FirstOrDefault().Id;
             var json = JsonSerializer.Serialize(nuevoEjercito);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 

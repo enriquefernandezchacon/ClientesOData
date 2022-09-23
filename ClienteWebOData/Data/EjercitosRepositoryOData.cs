@@ -36,7 +36,7 @@ namespace ClienteWebOData.Data
         public async void Anadir(Ejercito nuevoEjercito)
         {
             CargarEjercitos();
-            nuevoEjercito.Id = _ejercitos.Count() + 1;
+            nuevoEjercito.Id = _ejercitos.OrderByDescending(x => x.Id).Take(1).FirstOrDefault().Id + 1;
             var json = JsonSerializer.Serialize(nuevoEjercito);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -44,6 +44,21 @@ namespace ClienteWebOData.Data
             using var client = new HttpClient();
 
             var response = await client.PostAsync(url, data);
+            CargarEjercitos();
+        }
+
+        public async void Remove(int id)
+        {
+            var json = JsonSerializer.Serialize(new Ejercito() { Id = id });
+            HttpRequestMessage request = new HttpRequestMessage
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json"),
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri("https://localhost:44306/odata/ejercitos(" + id + ")")
+            };
+            var client = new HttpClient();
+            var p = await client.SendAsync(request);
+            CargarEjercitos();
         }
     }
 }
