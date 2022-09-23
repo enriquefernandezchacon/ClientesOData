@@ -29,6 +29,8 @@ namespace ClienteWebOData
 
             services.AddDbContext<ClienteWebODataContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ClienteWebODataContext")));
+
+            services.AddScoped<IEjercitosRepository, EjercitosRepositoryOData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

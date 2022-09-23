@@ -12,9 +12,10 @@ namespace ClienteWebOData.Controllers
 {
     public class EjercitosController : Controller
     { 
-        private readonly ClienteWebODataContext _context;
+        private readonly IEjercitosRepository _context;
 
-        public EjercitosController(ClienteWebODataContext context)
+
+        public EjercitosController(IEjercitosRepository context)
         {
             _context = context;
         }
